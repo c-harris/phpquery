@@ -327,29 +327,11 @@ abstract class phpQuery {
 
 	public static function phpToMarkup( $php, $charset = 'utf-8' ) {
 
-		$regexes = array(
-			'@(<(?!\\?)(?:[^>]|\\?>)+\\w+\\s*=\\s*)(\')([^\']*)<'.'?php?(.*?)(?:\\?>)([^\']*)\'@s',
-			'@(<(?!\\?)(?:[^>]|\\?>)+\\w+\\s*=\\s*)(")([^"]*)<'.'?php?(.*?)(?:\\?>)([^"]*)"@s',
-		);
-
-		foreach ( $regexes as $regex ) {
-			$php = preg_replace_callback(
-				$regex,
-				array('phpQuery', '_phpToMarkupCallback'),
-				$php
-			);
-		}
-
 		$regex = '@(^|>[^<]*)+?(<\?php(.*?)(\?>))@s';
 		$php = preg_replace($regex, '\\1<php><!-- \\3 --></php>', $php);
 
 		return $php;
-	}
-
-	public static function _phpToMarkupCallback($php, $charset = 'utf-8') {
-		return $php[1].$php[2]
-			."<"."?php".$php[4]."?".">"
-			.$php[5].$php[2];
+		
 	}
 
 	public static function _markupToPHPCallback($m) {
