@@ -327,8 +327,8 @@ abstract class phpQuery {
 
 	public static function phpToMarkup( $php, $charset = 'utf-8' ) {
 
-		$regex = '@(^|>[^<]*)+?(<\?php(.*?)(\?>))@s';
-		$php = preg_replace($regex, '\\1<php><!-- \\3 --></php>', $php);
+		$regex = '@(^|<(?!script)[^?>]*)+?(^|>[^<]*)+?(<\?php(.*?)(\?>))@s';
+		$php = preg_replace($regex, '\\1<php><!-- \\4 --></php>', $php);
 
 		return $php;
 		
