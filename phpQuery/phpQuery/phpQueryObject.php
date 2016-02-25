@@ -2794,7 +2794,7 @@ class phpQueryObject
 	 */
 	public function andSelf() {
 		if ( $this->previous )
-			$this->elements = array_merge($this->elements, $this->previous->elements);
+			$this->elements = array_merge( $this->previous->elements, $this->elements );
 		return $this;
 	}
 	/**
