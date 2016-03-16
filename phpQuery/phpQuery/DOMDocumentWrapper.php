@@ -367,7 +367,7 @@ class DOMDocumentWrapper {
 	 * @param $html
 	 */
 	protected function charsetFixHTML($markup) {
-		$matches = array();
+/*		$matches = array();
 		// find meta tag
 		preg_match('@\s*<meta[^>]+http-equiv\\s*=\\s*(["|\'])Content-Type\\1([^>]+?)>@i',
 			$markup, $matches, PREG_OFFSET_CAPTURE
@@ -379,7 +379,7 @@ class DOMDocumentWrapper {
 			.substr($markup, $matches[0][1]+strlen($metaContentType));
 		$headStart = stripos($markup, '<head>');
 		$markup = substr($markup, 0, $headStart+6).$metaContentType
-			.substr($markup, $headStart+6);
+			.substr($markup, $headStart+6);*/
 		return $markup;
 	}
 	protected function charsetAppendToHTML($html, $charset, $xhtml = false) {
