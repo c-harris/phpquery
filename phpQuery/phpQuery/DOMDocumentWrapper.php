@@ -384,7 +384,7 @@ class DOMDocumentWrapper {
 	}
 	protected function charsetAppendToHTML($html, $charset, $xhtml = false) {
 		// remove existing meta[type=content-type]
-		$html = preg_replace('@\s*<meta[^>]+http-equiv\\s*=\\s*(["|\'])Content-Type\\1([^>]+?)>@i', '', $html);
+		$html = preg_replace('@<meta[^>]+http-equiv\s*=\s*["|\']Content-Type["|\'][^>]+>@i', '', $html);
 		$meta = '<meta http-equiv="Content-Type" content="text/html;charset='
 			.$charset.'" '
 			.($xhtml ? '/' : '')
