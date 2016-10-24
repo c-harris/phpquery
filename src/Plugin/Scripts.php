@@ -20,13 +20,13 @@ abstract class Scripts {
 	public static $PhpQueryMethods = null;
 	public static $config = array();
 
-    /**
-     * Enter description here...
-     *
-     * @param \PhpQuery\PhpQueryObject $self
-     * @param                          $arg1
-     * @return null|\PhpQuery\PhpQueryObject
-     */
+	/**
+	 * Enter description here...
+	 *
+	 * @param \PhpQuery\PhpQueryObject $self
+	 * @param                          $arg1
+	 * @return null|\PhpQuery\PhpQueryObject
+	 */
 	public static function script($self, $arg1) {
 		$params = func_get_args();
 		$params = array_slice($params, 2);
@@ -69,11 +69,12 @@ abstract class UtilScripts {
      * @param $name
      * @param $callback
      * @throws \Exception
-     * @return bool
+     * @return boolean|null
      */
 	public static function script($name, $callback) {
-		if (\PhpQuery\Plugin\UtilScripts::$scriptMethods[$name])
-			throw new \Exception("Script name conflict - '$name'");
+		if (\PhpQuery\Plugin\UtilScripts::$scriptMethods[$name]) {
+					throw new \Exception("Script name conflict - '$name'");
+		}
 		\PhpQuery\Plugin\UtilScripts::$scriptMethods[$name] = $callback;
 	}
 }

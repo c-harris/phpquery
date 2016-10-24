@@ -9,7 +9,7 @@ PhpQuery::newDocumentFile('test.html')
                         this is example title
                     </p>");
 $result = pq('p:eq(1)');
-if ( $result->hasClass('newTitle') )
+if ($result->hasClass('newTitle'))
 	print "Test '{$testName}' PASSED :)";
 else
 	print "Test '{$testName}' <strong>FAILED</strong> !!! ";
@@ -24,7 +24,7 @@ PhpQuery::newDocumentFile('test.html');
 pq('<div class="replacer">')
 	->replaceAll('li:first p');
 $result = pq('.replacer');
-if ( $result->size() == $testResult )
+if ($result->size() == $testResult)
 	print "Test '{$testName}' PASSED :)";
 else
 	print "Test '{$testName}' <strong>FAILED</strong> !!! ";

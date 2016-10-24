@@ -12,7 +12,7 @@ $doc2 = PhpQuery::newDocumentFile('test.html');
 foreach ($doc1->find('p') as $node)
    $doc2->find('body')->append(pq($node));
 $testResult = $doc2->find('p');
-if ( $testResult->size() == 2*$doc1->find('p')->size() )
+if ($testResult->size() == 2*$doc1->find('p')->size())
 	print "Test '{$testName}' PASSED :)";
 else {
 	print "Test '{$testName}' <strong>FAILED</strong> !!!<br />";
@@ -28,7 +28,7 @@ $doc2 = PhpQuery::newDocumentFile('test.html');
 foreach ($doc1->find('p') as $node)
    $doc2->find('body')->append($node);
 $testResult = $doc2->find('p');
-if ( $testResult->size() == 2*$doc1->find('p')->size() )
+if ($testResult->size() == 2*$doc1->find('p')->size())
 	print "Test '{$testName}' PASSED :)";
 else {
 	print "Test '{$testName}' <strong>FAILED</strong> !!!<br />";

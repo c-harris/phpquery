@@ -35,9 +35,9 @@ $testName = 'Load';
 $test = PhpQuery::newDocumentFile('test.html')
 	->find('div:first')
 	->load('http://wikipedia.org/ div[lang]');
-if (pq('div[lang]')->size())
+if (pq('div[lang]')->size()) {
 	print "Test '$testName' PASSED :)";
-else {
+} else {
 	print "Test '$testName' <strong>FAILED</strong> !!! ";
 	print "<pre>";
 	print "</pre>\n";
@@ -53,7 +53,7 @@ $pq = PhpQuery::ajax(array(
 ));
 function a789fhasdui3124($html) {
 	$testName = 'AJAX request text node';
-	if ( $html == 'hello world' )
+	if ($html == 'hello world')
 		print "Test '$testName' PASSED :)";
 	else {
 		print "Test '$testName' <strong>FAILED</strong> !!! ";

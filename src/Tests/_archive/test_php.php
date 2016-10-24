@@ -13,10 +13,11 @@ $result = PhpQuery::newDocumentPHP(null, 'text/html;charset=utf-8')
 		->find('a')
 			->attrPHP('href', 'print $array[\'key\']; if ("abc\'d\'") {};')
 		->end();
-if (trim($result->php()) == $expected)
+if (trim($result->php()) == $expected) {
 	print "Test '{$testName}' passed :)";
-else
+} else {
 	print "Test '{$testName}' <strong>FAILED</strong> !!!";
+}
 print "\n";
 
 $testName = 'PHP file open';

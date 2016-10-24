@@ -8,10 +8,11 @@ $result = PhpQuery::newDocumentFile('test.html')
 	->find('li:first')
 		->find('p:first')
 			->html('żźć');
-if (trim($result->html()) == 'żźć')
+if (trim($result->html()) == 'żźć') {
 	print "Test '{$testName}' passed :)<br />\n";
-else
+} else {
 	print "Test '{$testName}' <strong>FAILED</strong> !!!<br />\n";
+}
 print "\n";
 
 $testName = 'Text node HTML entite append';
@@ -20,9 +21,9 @@ $result = PhpQuery::newDocumentFile('test.html')
 		->find('p:first')
 			->_empty()
 			->append('&eacute;');
-if (trim($result->html()) == 'é')
+if (trim($result->html()) == 'é') {
 	print "Test '{$testName}' passed :)<br />\n";
-else {
+} else {
 	print "Test '{$testName}' <strong>FAILED</strong> !!!<br />\n";
 	print $result->html();
 }
@@ -34,9 +35,9 @@ $result = PhpQuery::newDocumentFile('test.html')
 		->find('p:first')
 			->empty()
 			->append('<span>&eacute;</span>');
-if (trim($result->html()) == '<span>é</span>')
+if (trim($result->html()) == '<span>é</span>') {
 	print "Test '{$testName}' passed :)<br />\n";
-else {
+} else {
 	print "Test '{$testName}' <strong>FAILED</strong> !!!<br />\n";
 	print $result->html();
 }
@@ -53,9 +54,9 @@ $li->html('test1-&eacute;-test1')
 	);
 $result = $result->find('div:first li:first');
 $expected = 'test1-é-test1test2-é-test2';
-if (trim(str_replace("\n", '', $result->html())) == $expected)
+if (trim(str_replace("\n", '', $result->html())) == $expected) {
 	print "Test '{$testName}' passed :)<br />\n";
-else {
+} else {
 	print "Test '{$testName}' <strong>FAILED</strong> !!!<br />\n";
 	print "'".trim($result->html())."'";
 }
@@ -65,9 +66,9 @@ $testName = 'Attr charset';
 $result = PhpQuery::newDocumentFile('test.html')
 	->find('li:first')
 		->attr('test', 'foo &eacute; żźć bar');
-if (trim($result->attr('test')) == 'foo &eacute; żźć bar')
+if (trim($result->attr('test')) == 'foo &eacute; żźć bar') {
 	print "Test '{$testName}' passed :)<br />\n";
-else {
+} else {
 	print "Test '{$testName}' <strong>FAILED</strong> !!!<br />\n";
 	print $result->attr('test');
 }

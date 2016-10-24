@@ -15,7 +15,7 @@ PhpQuery::ajaxAllowHost(
 	'docs.google.com',
 	'reader.google.com'
 );
-if (! function_exists('ndfasui8923')) {
+if (!function_exists('ndfasui8923')) {
 	function ndfasui8923($browser, $scope) {
 		extract($scope);
 		$browser
