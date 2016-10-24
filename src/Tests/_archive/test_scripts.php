@@ -8,9 +8,9 @@ PhpQuery::plugin('Scripts');
 $testName = 'Scripts/example';
 $doc = PhpQuery::newDocumentFile('test.html');
 $testResult = 10;
-if ($doc->script('example', 'p')->length == $testResult)
+if ($doc->script('example', 'p')->length == $testResult) {
 	print "Test '$testName' PASSED :)";
-else {
+} else {
 	print "Test '$testName' <strong>FAILED</strong> !!! ";
 	print "<pre>";
 	var_dump($doc->whois());
@@ -26,9 +26,9 @@ $url = 'http://code.google.com/p/phpquery/w/edit/MultiDocumentSupport';
 $editor = PhpQuery::newDocument('<div/>')
 	->script('google_login')
 	->location($url);
-if ($editor->find('textarea#content')->length == $testResult)
+if ($editor->find('textarea#content')->length == $testResult) {
 	print "Test '$testName' PASSED :)";
-else {
+} else {
 	print "Test '$testName' <strong>FAILED</strong> !!! ";
 	print "<pre>";
 	var_dump($doc->whois());

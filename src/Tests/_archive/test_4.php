@@ -9,7 +9,7 @@ $testResult = array(
 $result = PhpQuery::newDocumentFile('test.html')
 	->find('li')
 		->slice(1, 2);
-if ( $result->whois() == $testResult )
+if ($result->whois() == $testResult)
 	print "Test 'Slice1' PASSED :)";
 else {
 	print "Test 'Slice1' <strong>FAILED</strong> !!! ";
@@ -29,7 +29,7 @@ $testResult = array(
 $result = PhpQuery::newDocumentFile('test.html')
 	->find('li')
 		->slice(1, -1);
-if ( $result->whois() == $testResult )
+if ($result->whois() == $testResult)
 	print "Test 'Slice2' PASSED :)";
 else {
 	print "Test 'Slice2' <strong>FAILED</strong> !!! ";
@@ -45,7 +45,7 @@ $result = PhpQuery::newDocument('<li><span class="field1"></span><span class="fi
 		->php('longlongtest');
 $validResult = '<li><span class="field1"><php>longlongtest</php></span><span class="field1"><php>longlongtest</php></span></li>';
 similar_text($result->htmlOuter(), $validResult, $similarity);
-if ( $similarity > 80 )
+if ($similarity > 80)
 	print "Test 'Multi-insert' PASSED :)";
 else {
 	print "Test 'Multi-insert' <strong>FAILED</strong> !!! ";
@@ -60,7 +60,7 @@ $testResult = 1;
 $result = PhpQuery::newDocumentFile('test.html')
 	->find('p')
 		->index(pq('p.title:first'));
-if ( $result == $testResult )
+if ($result == $testResult)
 	print "Test 'Index' PASSED :)";
 else {
 	print "Test 'Index' <strong>FAILED</strong> !!! ";
@@ -74,15 +74,15 @@ $document;
 $p = PhpQuery::newDocumentFile('test.html')
 	->toReference($document)
 	->find('p:first');
-foreach(array(0,1,2) as $i) {
+foreach (array(0, 1, 2) as $i) {
 	$p->clone()
 		->addClass("clone-test")
 		->addClass("class-$i")
 		->insertBefore($p);
 }
-if (pq('.clone-test')->size() == $testResult)
+if (pq('.clone-test')->size() == $testResult) {
 	print "Test '$testName' PASSED :)";
-else {
+} else {
 	print "Test '$testName' <strong>FAILED</strong> !!! ";
 }
 print "\n";
@@ -97,9 +97,9 @@ $result = PhpQuery::newDocumentFile('test.html')
 	->next()
 	->prev()
 	->is('#testID');
-if ($result)
+if ($result) {
 	print "Test '$testName' PASSED :)";
-else {
+} else {
 	print "Test '$testName' <strong>FAILED</strong> !!! ";
 }
 print "\n";

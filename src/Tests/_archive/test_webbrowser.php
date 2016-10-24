@@ -13,10 +13,10 @@ PhpQuery::$ajaxAllowedHosts[] = 'mail.google.com';
 if (0) {
 	PhpQuery::$plugins->browserGet('http://google.com/', 'success1');
 	/**
-	*
-	* @param $pq PhpQueryObject
-	* @return unknown_type
-	*/
+	 *
+	 * @param $pq PhpQueryObject
+	 * @return unknown_type
+	 */
 	function success1($pq) {
 		print 'success1 callback';
 		$pq
@@ -28,10 +28,10 @@ if (0) {
 		;
 	}
 	/**
-	*
-	* @param $html PhpQueryObject
-	* @return unknown_type
-	*/
+	 *
+	 * @param $html PhpQueryObject
+	 * @return unknown_type
+	 */
 	function success2($pq) {
 		print 'success2 callback';
 		print $pq

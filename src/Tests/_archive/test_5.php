@@ -27,14 +27,14 @@ $tests = array(
 	array('callbackClass', 'staticMethodCallback'),
 	array(new callbackClass, 'methodCallback')
 );
-foreach($tests as $test) {
+foreach ($tests as $test) {
 	$result = PhpQuery::newDocumentFile('test.html')
 		->find('li')
 			->each($test);
 	$testName = is_array($test)
 		? $test[1]
 		: $test;
-	if ( $result->whois() == $testResult )
+	if ($result->whois() == $testResult)
 		print "Test '$testName' PASSED :)";
 	else {
 		print "Test '$testName' <strong>FAILED</strong> !!! ";

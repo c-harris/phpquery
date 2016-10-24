@@ -1,5 +1,5 @@
 <?php
-require(__DIR__ . '/../src/PhpQuery.php');
+require(__DIR__.'/../src/PhpQuery.php');
 
 // INITIALIZE IT
 // PhpQuery::newDocumentHTML($markup);
@@ -35,7 +35,7 @@ $ul = pq('ul')->insertAfter('div');
 
 // ITERATE IT
 // all direct LIs from $ul
-foreach($ul['> li'] as $li) {
+foreach ($ul['> li'] as $li) {
 	// iteration returns PLAIN dom nodes, NOT PhpQuery objects
 	$tagName = $li->tagName;
 	$childNodes = $li->childNodes;

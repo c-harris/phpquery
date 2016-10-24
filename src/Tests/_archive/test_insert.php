@@ -11,9 +11,9 @@ $doc = PhpQuery::newDocumentFile('document-types/document-utf8.xhtml');
 print $doc->find('p');
 $markup = "test<br />test<p>test p</p>";
 $doc['body > p:last']->append($markup);
-if ($doc['body > p:last p']->length == 1)
+if ($doc['body > p:last p']->length == 1) {
 	print "Test '{$testName}' PASSED :)";
-else {
+} else {
 	print "Test '{$testName}' <strong>FAILED</strong> !!! ";
 	print $doc->htmlOuter('htmlspecialchars');
 }

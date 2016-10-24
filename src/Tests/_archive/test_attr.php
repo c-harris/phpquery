@@ -17,7 +17,7 @@ print "\n";
 $testName = 'Attribute change in iteration';
 $expected = 'new attr value';
 $doc = PhpQuery::newDocumentFile('test.html');
-foreach($doc['p[rel]:first'] as $p)
+foreach ($doc['p[rel]:first'] as $p)
 	pq($p)->attr('rel', $expected);
 if ($doc['p[rel]:first']->attr('rel') == $expected)
 	print "Test '{$testName}' passed :)";

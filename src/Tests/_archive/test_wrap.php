@@ -8,8 +8,8 @@ $p = PhpQuery::newDocumentFile('test.html')
 		->slice(1, 3);
 $p->wrap('<div class="wrapper">');
 $result = true;
-foreach($p as $node) {
-	if (! pq($node)->parent()->is('.wrapper'))
+foreach ($p as $node) {
+	if (!pq($node)->parent()->is('.wrapper'))
 		$result = false;
 }
 if ($result)
@@ -28,7 +28,7 @@ PhpQuery::newDocumentFile('test.html')
 		->slice(1, 3)
 			->wrapAll('<div class="wrapper">');
 $result = pq('.wrapper');
-if ( $result->size() == $testResult )
+if ($result->size() == $testResult)
 	print "Test '{$testName}' PASSED :)";
 else
 	print "Test '{$testName}' <strong>FAILED</strong> !!! ";
@@ -43,7 +43,7 @@ PhpQuery::newDocumentFile('test.html')
 	->find('li:first')
 		->wrapInner('<div class="wrapper">');
 $result = pq('.wrapper p');
-if ( $result->size() == $testResult )
+if ($result->size() == $testResult)
 	print "Test '{$testName}' PASSED :)";
 else
 	print "Test '{$testName}' <strong>FAILED</strong> !!! ";

@@ -17,11 +17,12 @@ class PhpQuery {
 	static $documents = array();
 	static $defaultCharset = 'utf-8';
 	static function debug($text) {
-		if (self::$debug)
-			print var_dump($text);
+		if (self::$debug) {
+					print var_dump($text);
+		}
 	}
 }
-require_once(__DIR__ . '/../../Dom/DOMDocumentWrapper.php');
+require_once(__DIR__.'/../../Dom/DOMDocumentWrapper.php');
 PhpQuery::$debug = 2;
 
 /* ENCODINGS */

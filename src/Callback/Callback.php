@@ -1,6 +1,14 @@
 <?php
 interface ICallbackNamed {
+
+	/**
+	 * @return boolean
+	 */
 	function hasName();
+
+	/**
+	 * @return string
+	 */
 	function getName();
 }
 /**
@@ -80,8 +88,8 @@ class CallbackBody extends Callback {
 class CallbackReturnReference extends Callback
 	implements ICallbackNamed {
 	protected $reference;
-	public function __construct(&$reference, $name = null){
-		$this->reference =& $reference;
+	public function __construct(&$reference, $name = null) {
+		$this->reference = & $reference;
 		$this->callback = array($this, 'callback');
 	}
 	public function callback() {
@@ -103,8 +111,8 @@ class CallbackReturnValue extends Callback
 	implements ICallbackNamed {
 	protected $value;
 	protected $name;
-	public function __construct($value, $name = null){
-		$this->value =& $value;
+	public function __construct($value, $name = null) {
+		$this->value = & $value;
 		$this->name = $name;
 		$this->callback = array($this, 'callback');
 	}
@@ -134,8 +142,8 @@ class CallbackParameterToReference extends Callback {
 	 * @TODO implement $paramIndex; 
 	 * param index choose which callback param will be passed to reference
 	 */
-	public function __construct(&$reference){
-		$this->callback =& $reference;
+	public function __construct(&$reference) {
+		$this->callback = & $reference;
 	}
 }
 //class CallbackReference extends Callback {

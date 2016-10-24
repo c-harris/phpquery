@@ -10,7 +10,7 @@ $testResult = array(
 $result = PhpQuery::newDocumentFile('test.html');
 $result = $result->find('p')
 	->filter('.body:gt(1)');
-if ( $result->whois() == $testResult )
+if ($result->whois() == $testResult)
 	print "Test '{$testName}' PASSED :)";
 else
 	print "Test '{$testName}' <strong>FAILED</strong> !!! ";
@@ -30,10 +30,11 @@ $single = $testDOM->find('p')->filter('.body')
 ;
 $double = $testDOM->find('p')
 	->filter('.body, .title');
-if ($single->length == count($double))
+if ($single->length == count($double)) {
 	print "Test '{$testName}' PASSED :)";
-else
+} else {
 	print "Test '{$testName}' <strong>FAILED</strong> !!! ";
+}
 print "\n";
 print_r($single->whois());
 print "\n";
@@ -49,7 +50,7 @@ $result = PhpQuery::newDocumentFile('test.html')->find('html')
 $result = PhpQuery::newDocument($result->htmlOuter())->find('html')
 	->attr('test');
 //similar_text($result->htmlOuter(), $validResult, $similarity);
-if ( $result == $validResult )
+if ($result == $validResult)
 	print "Test '{$testName}' PASSED :)";
 else {
 	print "Test '{$testName}' <strong>FAILED</strong> !!! ";

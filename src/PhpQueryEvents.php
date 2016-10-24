@@ -57,8 +57,8 @@ abstract class PhpQueryEvents
             while ($node) {
                 // TODO whois
                 PhpQuery::debug(
-                    "Triggering " . ($i ? "bubbled " : '')
-                    . "event '{$type}' on " . "node \n"
+                    "Triggering ".($i ? "bubbled " : '')
+                    . "event '{$type}' on "."node \n"
                 );
                 //.PhpQueryObject::whois($node)."\n");
                 $event->currentTarget = $node;
@@ -86,7 +86,7 @@ abstract class PhpQueryEvents
                                 ),
                                 $data
                             );
-                            $return      = PhpQuery::callbackRun($handler['callback'], $params);
+                            $return = PhpQuery::callbackRun($handler['callback'], $params);
                             if ($return === false) {
                                 $event->bubbles = false;
                             }
@@ -107,7 +107,7 @@ abstract class PhpQueryEvents
      * Binds a handler to one or more events (like click) for each matched element.
      * Can also bind custom events.
      *
-     * @param \DOMNode|PhpQueryObject|string $document
+     * @param string $document
      * @param                                $node
      * @param string                         $type
      * @param string                         $data Optional
@@ -141,7 +141,7 @@ abstract class PhpQueryEvents
     /**
      * Enter description here...
      *
-     * @param \DOMNode|PhpQueryObject|string $document
+     * @param string $document
      * @param                                $node
      * @param string                         $type
      * @param                                $callback

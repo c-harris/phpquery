@@ -153,7 +153,7 @@ class DOMDocumentWrapper
     protected function loadMarkupHTML($markup, $requestedCharset = null)
     {
         if (PhpQuery::$debug) {
-            PhpQuery::debug('Full markup load (HTML): ' . substr($markup, 0, 250));
+            PhpQuery::debug('Full markup load (HTML): '.substr($markup, 0, 250));
         }
         $this->loadMarkupReset();
         $this->isHTML = true;
@@ -197,7 +197,7 @@ class DOMDocumentWrapper
                     $requestedCharset,
                     'AUTO'
                 );
-                $docEncoding      = mb_detect_encoding($markup, implode(', ', $possibleCharsets));
+                $docEncoding = mb_detect_encoding($markup, implode(', ', $possibleCharsets));
                 if (!$docEncoding) {
                     $docEncoding = $documentCharset;
                 }
@@ -243,7 +243,7 @@ class DOMDocumentWrapper
     protected function loadMarkupXML($markup, $requestedCharset = null)
     {
         if (PhpQuery::$debug) {
-            PhpQuery::debug('Full markup load (XML): ' . substr($markup, 0, 250));
+            PhpQuery::debug('Full markup load (XML): '.substr($markup, 0, 250));
         }
         $this->loadMarkupReset();
         $this->isXML = true;
@@ -320,7 +320,7 @@ class DOMDocumentWrapper
                     | LIBXML_DTDATTR | LIBXML_NONET
                     : LIBXML_DTDLOAD | LIBXML_DTDATTR | LIBXML_NONET | LIBXML_NOWARNING
                     | LIBXML_NOERROR;
-                $return       = $this->document->loadXML($markup, $libxmlStatic);
+                $return = $this->document->loadXML($markup, $libxmlStatic);
                 // 				if (! $return)
                 // 					$return = $this->document->loadHTML($markup);
             }
@@ -358,7 +358,7 @@ class DOMDocumentWrapper
     protected function isXML($markup)
     {
         //		return strpos($markup, '<?xml') !== false && stripos($markup, 'xhtml') === false;
-        return strpos(substr($markup, 0, 100), '<' . '?xml') !== false;
+        return strpos(substr($markup, 0, 100), '<'.'?xml') !== false;
     }
 
     protected function contentTypeToArray($contentType)
@@ -413,7 +413,7 @@ class DOMDocumentWrapper
     {
         $matches;
         // find declaration
-        preg_match('@<' . '?xml[^>]+encoding\\s*=\\s*(["|\'])(.*?)\\1@i', $markup, $matches);
+        preg_match('@<'.'?xml[^>]+encoding\\s*=\\s*(["|\'])(.*?)\\1@i', $markup, $matches);
         return isset($matches[2]) ? strtolower($matches[2]) : null;
     }
 
@@ -440,7 +440,7 @@ class DOMDocumentWrapper
         $markup          = substr($markup, 0, $matches[0][1])
             . substr($markup, $matches[0][1] + strlen($metaContentType));
         $headStart       = stripos($markup, '<head>');
-        $markup          = substr($markup, 0, $headStart + 6) . $metaContentType
+        $markup          = substr($markup, 0, $headStart + 6).$metaContentType
             . substr($markup, $headStart + 6);
         return $markup;
     }
@@ -450,23 +450,23 @@ class DOMDocumentWrapper
         // remove existing meta[type=content-type]
         $html = preg_replace('@\s*<meta[^>]+http-equiv\\s*=\\s*(["|\'])Content-Type\\1([^>]+?)>@i', '', $html);
         $meta = '<meta http-equiv="Content-Type" content="text/html;charset='
-            . $charset . '" ' . ($xhtml ? '/' : '') . '>';
+            . $charset.'" '.($xhtml ? '/' : '').'>';
         if (strpos($html, '<head') === false) {
             if (strpos($html, '<html') === false) {
-                return $meta . $html;
+                return $meta.$html;
             } else {
                 return preg_replace('@<html(.*?)(?(?<!\?)>)@s', "<html\\1><head>{$meta}</head>", $html);
             }
         } else {
-            return preg_replace('@<head(.*?)(?(?<!\?)>)@s', '<head\\1>' . $meta, $html);
+            return preg_replace('@<head(.*?)(?(?<!\?)>)@s', '<head\\1>'.$meta, $html);
         }
     }
 
     protected function charsetAppendToXML($markup, $charset)
     {
-        $declaration = '<' . '?xml version="1.0" encoding="' . $charset . '"?'
+        $declaration = '<'.'?xml version="1.0" encoding="'.$charset.'"?'
             . '>';
-        return $declaration . $markup;
+        return $declaration.$markup;
     }
 
     public static function isDocumentFragmentHTML($markup)
@@ -477,7 +477,7 @@ class DOMDocumentWrapper
 
     public static function isDocumentFragmentXML($markup)
     {
-        return stripos($markup, '<' . '?xml') === false;
+        return stripos($markup, '<'.'?xml') === false;
     }
 
     public static function isDocumentFragmentXHTML($markup)
@@ -592,6 +592,7 @@ class DOMDocumentWrapper
      *
      * @param $document DOMDocumentWrapper
      * @param $markup
+     * @param DOMDocumentWrapper $fragment
      * @return $document
      */
     private function documentFragmentLoadMarkup($fragment, $charset, $markup = null)
@@ -604,24 +605,24 @@ class DOMDocumentWrapper
             if ($fragment->isXHTML) {
                 // add FAKE element to set default namespace
                 $fragment->loadMarkupXML(
-                    '<?xml version="1.0" encoding="' . $charset
+                    '<?xml version="1.0" encoding="'.$charset
                     . '"?>'
                     . '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" '
                     . '"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">'
-                    . '<fake xmlns="http://www.w3.org/1999/xhtml">' . $markup . '</fake>'
+                    . '<fake xmlns="http://www.w3.org/1999/xhtml">'.$markup.'</fake>'
                 );
                 $fragment->root = $fragment->document->firstChild->nextSibling;
             } else {
                 $fragment->loadMarkupXML(
-                    '<?xml version="1.0" encoding="' . $charset
-                    . '"?><fake>' . $markup . '</fake>'
+                    '<?xml version="1.0" encoding="'.$charset
+                    . '"?><fake>'.$markup.'</fake>'
                 );
                 $fragment->root = $fragment->document->firstChild;
             }
         } else {
             $markup2 = PhpQuery::$defaultDoctype
                 . '<html><head><meta http-equiv="Content-Type" content="text/html;charset='
-                . $charset . '"></head>';
+                . $charset.'"></head>';
             $noBody  = strpos($markup, '<body') === false;
             if ($noBody) {
                 $markup2 .= '<body>';
@@ -643,6 +644,9 @@ class DOMDocumentWrapper
         return true;
     }
 
+    /**
+     * @param DOMDocumentWrapper $fragment
+     */
     protected function documentFragmentToMarkup($fragment)
     {
         PhpQuery::debug('documentFragmentToMarkup');
@@ -662,7 +666,7 @@ class DOMDocumentWrapper
         }
         $fragment->isDocumentFragment = $tmp;
         if (PhpQuery::$debug) {
-            PhpQuery::debug('documentFragmentToMarkup: ' . substr($markup, 0, 150));
+            PhpQuery::debug('documentFragmentToMarkup: '.substr($markup, 0, 150));
         }
         return $markup;
     }
@@ -720,7 +724,7 @@ class DOMDocumentWrapper
                     $loop = $nodes;
                 }
                 self::debug(
-                    "Getting markup, moving selected nodes (" . count($loop)
+                    "Getting markup, moving selected nodes (".count($loop)
                     . ") to new DocumentFragment"
                 );
                 $fake   = $this->documentFragmentCreate($loop);
@@ -730,7 +734,7 @@ class DOMDocumentWrapper
                 self::debug("Fixing XHTML");
                 $markup = self::markupFixXHTML($markup);
             }
-            self::debug("Markup: " . substr($markup, 0, 250));
+            self::debug("Markup: ".substr($markup, 0, 250));
             return $markup;
         } else {
             if ($this->isDocumentFragment) {
@@ -745,7 +749,7 @@ class DOMDocumentWrapper
                 return $markup;
             } else {
                 self::debug(
-                    "Getting markup (" . ($this->isXML ? 'XML' : 'HTML')
+                    "Getting markup (".($this->isXML ? 'XML' : 'HTML')
                     . "), final with charset '{$this->charset}'"
                 );
                 $markup = $this->isXML ? $this->document->saveXML()
@@ -754,12 +758,15 @@ class DOMDocumentWrapper
                     self::debug("Fixing XHTML");
                     $markup = self::markupFixXHTML($markup);
                 }
-                self::debug("Markup: " . substr($markup, 0, 250));
+                self::debug("Markup: ".substr($markup, 0, 250));
                 return $markup;
             }
         }
     }
 
+    /**
+     * @param string $markup
+     */
     protected static function markupFixXHTML($markup)
     {
         $markup = self::expandEmptyTag('script', $markup);
@@ -776,7 +783,7 @@ class DOMDocumentWrapper
     /**
      * expandEmptyTag
      *
-     * @param $tag
+     * @param string $tag
      * @param $xml
      * @return string
      * @author mjaque at ilkebenson dot com
